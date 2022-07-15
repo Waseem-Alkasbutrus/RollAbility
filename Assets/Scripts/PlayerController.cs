@@ -11,15 +11,21 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public float thrustForce;
     public float flapForce;
+    public float slingForce;
+    public Vector2 maxSlingDist;
 
     // [HideInInspector]
     public bool isGrounded;
 
     private float movement;
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rb;
+    public Camera mainCamera;
+
+    private Vector2 SlingStartPos;
+    private Vector2 SlingEndPos;
 
     private void Start() {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -38,10 +44,23 @@ public class PlayerController : MonoBehaviour
         if(movementType == MovementType.JetPack && Input.GetAxisRaw("Vertical") > 0) {
             Thrust();
         }
+
+        if(movementType == MovementType.Sling && Input.GetMouseButtonDown(0)) {
+            SlingStartPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            Debug.Log("Mouse Down");
+        }
+
+        if(movementType == MovementType.Sling && Input.GetMouseButtonUp(0)) {
+            SlingEndPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            Debug.Log("Mouse Up");
+            Sling();
+        }
     }
 
     private void FixedUpdate() {
-        rigidbody.velocity = new Vector2(movementSpeed * movement, rigidbody.velocity.y);
+        if (movementType != MovementType.Sling) {
+            rb.AddForce(new Vector2(movement, 0) * movementSpeed);
+        }
     }
 
     private void Up() {
@@ -65,18 +84,25 @@ public class PlayerController : MonoBehaviour
 
     private void Flap() {
         Debug.Log("Flap");
-        rigidbody.velocity = new Vector2(rigidbody.velocity.x, flapForce);
+        rb.velocity = new Vector2(rb.velocity.x, flapForce);
     }
 
     private void Jump() {
         if (isGrounded) {
             Debug.Log("Jump");
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
 
     private void Thrust() {
         Debug.Log("Thrust JetPack");
-        rigidbody.AddForce(Vector2.up * thrustForce);
+        rb.AddForce(Vector2.up * thrustForce);
+    }
+
+    private void Sling() {
+        Vector2 force = new Vector2(Mathf.Clamp(SlingStartPos.x - SlingEndPos.x, -maxSlingDist.x, maxSlingDist.x), Mathf.Clamp(SlingStartPos.y - SlingEndPos.y, -maxSlingDist.y, maxSlingDist.y));
+        rb.AddForce(force * slingForce, ForceMode2D.Impulse);
+
+        Debug.Log(force * slingForce);
     }
 }
