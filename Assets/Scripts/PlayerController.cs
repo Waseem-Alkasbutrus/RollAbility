@@ -9,8 +9,13 @@ public class PlayerController : MonoBehaviour
     public MovementType movementType;
     public float movementSpeed;
     public float jumpForce;
+    public float thrustForce;
+    public float flapForce;
 
-    private Vector2 movement;
+    // [HideInInspector]
+    public bool isGrounded;
+
+    private float movement;
     private Rigidbody2D rigidbody;
 
     private void Start() {
@@ -20,21 +25,30 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        movement = Input.GetAxisRaw("Horizontal");
+        
+        if(Input.GetButtonDown("Jump")) {
+            if (movementType == MovementType.Flap) {
+                Flap();
+            } else if (movementType == MovementType.Jump) {
+                Jump();
+            }
+        }
+
+        if(movementType == MovementType.JetPack && Input.GetAxisRaw("Vertical") > 0) {
+            Thrust();
+        }
     }
 
     private void FixedUpdate() {
-        rigidbody.velocity = new Vector2(movementSpeed * movement.x, rigidbody.velocity.y);
-        if (movement.y > 0) {
-            Up();
-        }
+        rigidbody.velocity = new Vector2(movementSpeed * movement, rigidbody.velocity.y);
     }
 
     private void Up() {
         switch (movementType)
         {
-            case MovementType.Jump: Debug.Log("Jump");
+            case MovementType.Jump:
+                Jump();
                 break;
             case MovementType.Sling: Debug.Log("Sling");
                 break;
@@ -42,13 +56,27 @@ public class PlayerController : MonoBehaviour
                 Thrust();
                 break;
             case MovementType.Flap: Debug.Log("Flap");
+                Flap();
                 break;
             default: Debug.Log("CHECK MOVEMENT TYPES");
                 break;
         }
     }
 
+    private void Flap() {
+        Debug.Log("Flap");
+        rigidbody.velocity = new Vector2(rigidbody.velocity.x, flapForce);
+    }
+
+    private void Jump() {
+        if (isGrounded) {
+            Debug.Log("Jump");
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
+        }
+    }
+
     private void Thrust() {
-        rigidbody.AddForce(Vector2.up * jumpForce);
+        Debug.Log("Thrust JetPack");
+        rigidbody.AddForce(Vector2.up * thrustForce);
     }
 }
