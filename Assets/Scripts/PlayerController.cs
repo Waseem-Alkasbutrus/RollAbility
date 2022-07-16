@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public enum MovementType {Jump, Sling, JetPack, Flap}
 
     public MovementType movementType;
+
     public float movementSpeed;
     public float jumpForce;
     public float thrustForce;
@@ -20,12 +21,14 @@ public class PlayerController : MonoBehaviour
     private float movement;
     private Rigidbody2D rb;
     public Camera mainCamera;
+    private DrawSlingLine slingLine;
 
     private Vector2 SlingStartPos;
     private Vector2 SlingEndPos;
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
+        slingLine = GetComponent<DrawSlingLine>();
     }
 
     // Update is called once per frame
@@ -41,13 +44,20 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(movementType == MovementType.JetPack && Input.GetAxisRaw("Vertical") > 0) {
+        if(movementType == MovementType.JetPack && Input.GetButton("Jump")) {
             Thrust();
         }
 
         if(movementType == MovementType.Sling && Input.GetMouseButtonDown(0)) {
             SlingStartPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             Debug.Log("Mouse Down");
+        }
+
+        if (Input.GetMouseButton(0)) {
+            Vector2 SlingCurrentPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            slingLine.RenderLine(SlingStartPos, SlingCurrentPos);
+        } else {
+            slingLine.ClearLine();
         }
 
         if(movementType == MovementType.Sling && Input.GetMouseButtonUp(0)) {
@@ -100,9 +110,9 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Sling() {
-        Vector2 force = new Vector2(Mathf.Clamp(SlingStartPos.x - SlingEndPos.x, -maxSlingDist.x, maxSlingDist.x), Mathf.Clamp(SlingStartPos.y - SlingEndPos.y, -maxSlingDist.y, maxSlingDist.y));
-        rb.AddForce(force * slingForce, ForceMode2D.Impulse);
-
-        Debug.Log(force * slingForce);
+        if (isGrounded) {
+            Vector2 force = new Vector2(Mathf.Clamp(SlingStartPos.x - SlingEndPos.x, -maxSlingDist.x, maxSlingDist.x), Mathf.Clamp(SlingStartPos.y - SlingEndPos.y, -maxSlingDist.y, maxSlingDist.y));
+            rb.AddForce(force * slingForce, ForceMode2D.Impulse);
+        }
     }
 }
