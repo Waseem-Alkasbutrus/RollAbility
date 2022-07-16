@@ -49,66 +49,46 @@ public class PlayerController : MonoBehaviour
             Thrust();
         }
 
-        if(movementType == MovementType.Sling && Input.GetMouseButtonDown(0)) {
-            SlingStartPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log("Mouse Down");
-        }
+        if (movementType == MovementType.Sling) {
+            if(Input.GetMouseButtonDown(0)) {
+                SlingStartPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            }
 
-        if (Input.GetMouseButton(0)) {
-            Vector2 SlingCurrentPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            slingLine.RenderLine(SlingStartPos, SlingCurrentPos);
-        } else {
-            slingLine.ClearLine();
-        }
+            if (Input.GetMouseButton(0)) {
+                Vector2 SlingCurrentPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                slingLine.RenderLine(SlingStartPos, SlingCurrentPos);
+            } else {
+                slingLine.ClearLine();
+            }
 
-        if(movementType == MovementType.Sling && Input.GetMouseButtonUp(0)) {
-            SlingEndPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log("Mouse Up");
-            Sling();
+            if(movementType == MovementType.Sling && Input.GetMouseButtonUp(0)) {
+                SlingEndPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                Sling();
+            }
         }
     }
 
     private void FixedUpdate() {
-        if (!isGrounded) {
-            rb.AddForce(new Vector2(movement, 0) * flyForce);
-        } else {
+        if (!isGrounded && movementType != MovementType.Sling) {
+            rb.AddForce(new Vector2(movement/2, 0) * flyForce);
+        } else if (movementType != MovementType.Sling) {
             rb.velocity = new Vector2(movementSpeed * movement, rb.velocity.y);
-        }
-    }
-
-    private void Up() {
-        switch (movementType)
-        {
-            case MovementType.Jump:
-                Jump();
-                break;
-            case MovementType.Sling: Debug.Log("Sling");
-                break;
-            case MovementType.JetPack: Debug.Log("Thrust JetPack");
-                Thrust();
-                break;
-            case MovementType.Flap: Debug.Log("Flap");
-                Flap();
-                break;
-            default: Debug.Log("CHECK MOVEMENT TYPES");
-                break;
+        } else if (movementType == MovementType.Sling && isGrounded) {
+            rb.velocity = new Vector2(rb.velocity.x * 0.7f, rb.velocity.y);
         }
     }
 
     private void Flap() {
-        Debug.Log("Flap");
         rb.velocity = new Vector2(rb.velocity.x, flapForce);
     }
 
     private void Jump() {
         if (isGrounded) {
-            Debug.Log("Jump");
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
 
     private void Thrust() {
-        Debug.Log("Thrust JetPack");
         rb.AddForce(Vector2.up * thrustForce);
     }
 
