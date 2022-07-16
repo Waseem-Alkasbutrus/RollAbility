@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public MovementType movementType;
 
     public float movementSpeed;
+    public float flyForce;
     public float jumpForce;
     public float thrustForce;
     public float flapForce;
@@ -68,8 +69,10 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        if (movementType != MovementType.Sling) {
-            rb.AddForce(new Vector2(movement, 0) * movementSpeed);
+        if (!isGrounded) {
+            rb.AddForce(new Vector2(movement, 0) * flyForce);
+        } else {
+            rb.velocity = new Vector2(movementSpeed * movement, rb.velocity.y);
         }
     }
 
