@@ -8,15 +8,23 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: aaa16bfc62c086f4fb45da87b6acf9b1, type: 3}
-  _jsonFile: {instanceID: 0}
+  _jsonFile: {fileID: -164016180542632921, guid: 23825814b2d66b44b9134e07741afe28, type: 3}
   _pixelsPerUnit: 16
-  _atlas: {instanceID: 0}
+  _atlas: {fileID: 4343727234628468602, guid: da7a16baf34a2814994c854e04305cfc, type: 2}
   _customLevelPrefab: {instanceID: 0}
   _deparentInRuntime: 0
   _intGridValueColorsVisible: 0
   _useCompositeCollider: 1
   _createBackgroundColor: 1
-  _intGridValues: []
+  _intGridValues:
+  - _key: Walls_1
+    _asset: {fileID: 11400000, guid: 464ddb065e4db3545b6471a4718a5203, type: 2}
+  - _key: Walls_2
+    _asset: {fileID: 11400000, guid: 464ddb065e4db3545b6471a4718a5203, type: 2}
+  - _key: Walls_3
+    _asset: {fileID: 11400000, guid: 464ddb065e4db3545b6471a4718a5203, type: 2}
+  - _key: BG_1
+    _asset: {fileID: 11400000, guid: d4dd100e35032ee468dc1f5b1301e581, type: 2}
   _entities: []
   _enumGenerate: 0
   _enumPath: 

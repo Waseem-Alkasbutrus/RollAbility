@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         } else if (movementType != MovementType.Sling) {
             rb.velocity = new Vector2(movementSpeed * movement, rb.velocity.y);
         } else if (movementType == MovementType.Sling && isGrounded) {
-            rb.velocity = new Vector2(rb.velocity.x * 0.7f, rb.velocity.y);
+            rb.velocity = new Vector2(rb.velocity.x * 0.8f, rb.velocity.y);
         }
     }
 
