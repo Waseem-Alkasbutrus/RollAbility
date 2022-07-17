@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Ice
+  - Mud
   layers:
   - Default
   - TransparentFX

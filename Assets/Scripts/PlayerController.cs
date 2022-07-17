@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     // [HideInInspector]
     public bool isGrounded;
+    // [HideInInspector]
+    public float friction;
 
     private float movement;
     private Rigidbody2D rb;
@@ -72,9 +74,13 @@ public class PlayerController : MonoBehaviour
         if (!isGrounded && movementType != MovementType.Sling) {
             rb.AddForce(new Vector2(movement/2, 0) * flyForce);
         } else if (movementType != MovementType.Sling) {
-            rb.velocity = new Vector2(movementSpeed * movement, rb.velocity.y);
+            if (movement != 0) {
+                rb.velocity = new Vector2(movementSpeed * movement, rb.velocity.y);
+            } else {
+                rb.velocity = new Vector2(rb.velocity.x * friction, rb.velocity.y);
+            }
         } else if (movementType == MovementType.Sling && isGrounded) {
-            rb.velocity = new Vector2(rb.velocity.x * 0.8f, rb.velocity.y);
+            rb.velocity = new Vector2(rb.velocity.x * friction, rb.velocity.y);
         }
     }
 

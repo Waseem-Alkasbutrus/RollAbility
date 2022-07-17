@@ -20,9 +20,9 @@ ScriptedImporter:
   - _key: Walls_1
     _asset: {fileID: 11400000, guid: 464ddb065e4db3545b6471a4718a5203, type: 2}
   - _key: Walls_2
-    _asset: {fileID: 11400000, guid: 464ddb065e4db3545b6471a4718a5203, type: 2}
+    _asset: {fileID: 11400000, guid: faa97f2663f7c7944be090bf0f9d0adc, type: 2}
   - _key: Walls_3
-    _asset: {fileID: 11400000, guid: 464ddb065e4db3545b6471a4718a5203, type: 2}
+    _asset: {fileID: 11400000, guid: c2f0df29ec65d24438c91d150f863700, type: 2}
   - _key: BG_1
     _asset: {fileID: 11400000, guid: d4dd100e35032ee468dc1f5b1301e581, type: 2}
   _entities: []
