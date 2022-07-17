@@ -22566,6 +22566,74 @@ TilemapCollider2D:
   m_CorrespondingSourceObject: {fileID: 6444140302029436611, guid: 23825814b2d66b44b9134e07741afe28, type: 3}
   m_PrefabInstance: {fileID: 83068485}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &304893813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 304893814}
+  - component: {fileID: 304893816}
+  - component: {fileID: 304893815}
+  m_Layer: 0
+  m_Name: GroundDetection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &304893814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304893813}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 516462389}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &304893815
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304893813}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0020646474, y: -0.485}
+  m_Size: {x: 0.46595013, y: 0.20000008}
+  m_Direction: 1
+--- !u!114 &304893816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304893813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba11df9135d5d7419966cc648d0b07b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 516462391}
+  groundFriction: 0.5
+  iceFriction: 0.95
+  mudFriction: 0.1
+  groundSpeed: 3
+  iceSpeed: 6
+  mudSpeed: 1
 --- !u!19719996 &339097482 stripped
 TilemapCollider2D:
   m_CorrespondingSourceObject: {fileID: 4809056314786192516, guid: 23825814b2d66b44b9134e07741afe28, type: 3}
@@ -22582,6 +22650,8 @@ GameObject:
   - component: {fileID: 454091470}
   - component: {fileID: 454091472}
   - component: {fileID: 454091471}
+  - component: {fileID: 454091474}
+  - component: {fileID: 454091473}
   m_Layer: 0
   m_Name: Traps
   m_TagString: Untagged
@@ -23185,6 +23255,34 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &454091473
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454091469}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
+--- !u!114 &454091474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454091469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00fc4823098b66045bf707a867e65cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &516462386
 GameObject:
   m_ObjectHideFlags: 0
@@ -23199,13 +23297,11 @@ GameObject:
   - component: {fileID: 516462396}
   - component: {fileID: 516462390}
   - component: {fileID: 516462391}
-  - component: {fileID: 516462393}
-  - component: {fileID: 516462392}
   - component: {fileID: 516462395}
   - component: {fileID: 516462394}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23291,11 +23387,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516462386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.76, y: -32.06, z: 0}
+  m_LocalPosition: {x: -35.17, y: -42.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 119143956}
+  - {fileID: 304893814}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23348,40 +23445,6 @@ MonoBehaviour:
   isGrounded: 1
   friction: 0
   mainCamera: {fileID: 519420031}
---- !u!70 &516462392
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 516462386}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0020646474, y: -0.485}
-  m_Size: {x: 0.46595013, y: 0.20000008}
-  m_Direction: 1
---- !u!114 &516462393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 516462386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cba11df9135d5d7419966cc648d0b07b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundFriction: 0.5
-  iceFriction: 0.95
-  mudFriction: 0.1
-  groundSpeed: 3
-  iceSpeed: 6
-  mudSpeed: 1
 --- !u!114 &516462394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23609,7 +23672,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.76, y: -32.06, z: -10}
+  m_LocalPosition: {x: -35.17, y: -42.48, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23697,7 +23760,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628429700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3, y: -0.14, z: 0}
+  m_LocalPosition: {x: -0.28, y: -0.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24029,7 +24092,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629195155}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.76, y: -32.06, z: -10}
+  m_LocalPosition: {x: -35.17, y: -42.48, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroundDetection : MonoBehaviour
 {
-    private PlayerController playerController;
+    public PlayerController playerController;
 
     public float groundFriction;
     public float iceFriction;
@@ -15,7 +15,7 @@ public class GroundDetection : MonoBehaviour
     public float mudSpeed;
 
     private void Start() {
-        playerController = GetComponent<PlayerController>();
+        Debug.Log(playerController);
     }
 
     // Update is called once per frame
