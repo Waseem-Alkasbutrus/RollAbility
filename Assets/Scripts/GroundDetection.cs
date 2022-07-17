@@ -51,7 +51,7 @@ public class GroundDetection : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (other.tag == "Ground" || other.tag == "Mud" || other.tag == "Ice") {
+        if (other.tag == "Wall" || other.tag == "Mud" || other.tag == "Ice") {
             playerController.isGrounded = false;
         }
     }
