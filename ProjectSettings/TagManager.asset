@@ -9,6 +9,7 @@ TagManager:
   - Mud
   - RespawnManager
   - Wall
+  - MuddyWall
   layers:
   - Default
   - TransparentFX

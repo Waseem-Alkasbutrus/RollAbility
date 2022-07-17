@@ -128,4 +128,8 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
+
+    public string GetMovementTypeString() {
+        return movementType.ToString();
+    }
 }

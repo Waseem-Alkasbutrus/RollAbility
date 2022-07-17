@@ -25,7 +25,7 @@ public class GroundDetection : MonoBehaviour
 
     // Update is called once per frame
     private void OnTriggerStay2D(Collider2D other) {
-        if (other.tag == "Wall" || other.tag == "Mud" || other.tag == "Ice") {
+        if (other.tag == "Wall" || other.tag == "MuddyWall" || other.tag == "Ice") {
             playerController.isGrounded = true;
             
             switch (other.tag)
@@ -34,7 +34,7 @@ public class GroundDetection : MonoBehaviour
                     playerController.friction = groundFriction;
                     playerController.movementSpeed = groundSpeed;
                     break;
-                case "Mud":
+                case "MuddyWall":
                     playerController.friction = mudFriction;
                     playerController.movementSpeed = mudSpeed;
                     break;
@@ -51,7 +51,7 @@ public class GroundDetection : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (other.tag == "Wall" || other.tag == "Mud" || other.tag == "Ice") {
+        if (other.tag == "Wall" || other.tag == "MuddyWall" || other.tag == "Ice") {
             playerController.isGrounded = false;
         }
     }
