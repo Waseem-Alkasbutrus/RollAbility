@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public enum MovementType {Jump, Sling, JetPack, Flap}
+    public enum MovementType {Jump, Sling, Flap, JetPack}
 
     [Space(10)]
     public MovementType movementType;
@@ -118,11 +118,11 @@ public class PlayerController : MonoBehaviour
                 movementType = MovementType.Sling;
                 break;
             case 3: 
-                movementType = MovementType.JetPack;
-                break;
-            case 4: 
                 movementType = MovementType.Flap;
                 break;
+            // case 4: 
+            //     movementType = MovementType.JetPack;
+            //     break;
             default:
                 Debug.Log("Unknown movement type: " + mode);
                 break;

@@ -4,21 +4,29 @@ using UnityEngine;
 
 public class DicePointManager : MonoBehaviour
 {
-    private GameObject player;
-    
     [HideInInspector]
     public Vector3 respawnPoint;
+
+    private GameObject player;
+    private int activePointIndex;
+    
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectsWithTag("Player")[0];
+        activePointIndex = 0;
     }
 
     public void RespawnPlayer() {
         player.transform.position = respawnPoint;
     }
 
-    public void setSpawnPoint(Vector3 newPosition) {
+    public void SetSpawnPoint(Vector3 newPosition) {
         respawnPoint = newPosition;
+        activePointIndex++;
+    }
+
+    public int GetNextPoint() {
+        return activePointIndex;
     }
 }

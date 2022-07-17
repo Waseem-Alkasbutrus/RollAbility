@@ -7,6 +7,8 @@ public class DicePoint : MonoBehaviour
     private GameObject player;
     private DicePointManager respawnManager;
 
+    public int index;
+
     void Start()
     {
         player = GameObject.FindGameObjectsWithTag("Player")[0];
@@ -14,13 +16,13 @@ public class DicePoint : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Player") {
+        if (other.tag == "Player" && respawnManager.GetNextPoint() == index) {
             Debug.Log("Checkpoint activated");
             // Send position to manager
-            respawnManager.setSpawnPoint(this.gameObject.transform.position);
+            respawnManager.SetSpawnPoint(this.gameObject.transform.position);
 
-            // Pick a number between 1-4
-            player.GetComponent<PlayerController>().SetMovementMode((int) Random.Range(1f,5f));
+            // Pick a number between 1-3
+            player.GetComponent<PlayerController>().SetMovementMode((int) Random.Range(1f,4f));
             
             // Play roll animation
             

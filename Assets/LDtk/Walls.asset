@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31471dfd53d5490a956a89a1b2d11ad9, type: 3}
   m_Name: Walls
   m_EditorClassIdentifier: 
-  _colliderType: 2
-  _customPhysicsSprite: {fileID: 0}
+  _colliderType: 1
+  _customPhysicsSprite: {fileID: -919711479, guid: 304234f91fcc5ec48bc243461b5f1b14, type: 3}
   _tilemapTag: Wall
   _tilemapLayerMask: 0
   _physicsMaterial: {fileID: 0}
