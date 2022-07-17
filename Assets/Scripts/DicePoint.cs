@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Traps : MonoBehaviour
+public class DicePoint : MonoBehaviour
 {
     private GameObject player;
     private DicePointManager respawnManager;
-    
-    // Start is called before the first frame update
+
     void Start()
     {
         player = GameObject.FindGameObjectsWithTag("Player")[0];
@@ -16,8 +15,17 @@ public class Traps : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
-            Debug.Log("Player Died! :(");
-            respawnManager.RespawnPlayer();
+            Debug.Log("Checkpoint activated");
+            // Send position to manager
+            respawnManager.setSpawnPoint(this.gameObject.transform.position);
+
+            // Pick a number between 1-4
+            player.GetComponent<PlayerController>().SetMovementMode((int) Random.Range(1f,5f));
+            
+            // Play roll animation
+            
+            // Destroy die
+            Destroy(this.gameObject);
         }
     }
 }

@@ -107,4 +107,25 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(force * slingForce, ForceMode2D.Impulse);
         }
     }
+
+    public void SetMovementMode(int mode) {
+        Debug.Log("Rolled a " + mode + "!");
+        switch(mode) {
+            case 1: 
+                movementType = MovementType.Jump;
+                break;
+            case 2: 
+                movementType = MovementType.Sling;
+                break;
+            case 3: 
+                movementType = MovementType.JetPack;
+                break;
+            case 4: 
+                movementType = MovementType.Flap;
+                break;
+            default:
+                Debug.Log("Unknown movement type: " + mode);
+                break;
+        }
+    }
 }
