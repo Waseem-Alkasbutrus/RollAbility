@@ -18,6 +18,10 @@ public class DicePointManager : MonoBehaviour
     }
 
     public void RespawnPlayer() {
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector2(0,0);
+        rb.angularVelocity = 0f;
+
         player.transform.position = respawnPoint;
     }
 
