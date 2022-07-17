@@ -18,7 +18,7 @@ ScriptedImporter:
   _createBackgroundColor: 1
   _intGridValues:
   - _key: Walls_1
-    _asset: {fileID: 11400000, guid: 464ddb065e4db3545b6471a4718a5203, type: 2}
+    _asset: {fileID: 11400000, guid: 6c3fd8e7448c063428931f7fb5a02d80, type: 2}
   - _key: Walls_2
     _asset: {fileID: 11400000, guid: faa97f2663f7c7944be090bf0f9d0adc, type: 2}
   - _key: Walls_3

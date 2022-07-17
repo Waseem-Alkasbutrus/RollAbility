@@ -25,12 +25,12 @@ public class GroundDetection : MonoBehaviour
 
     // Update is called once per frame
     private void OnTriggerStay2D(Collider2D other) {
-        if (other.tag == "Ground" || other.tag == "Mud" || other.tag == "Ice") {
+        if (other.tag == "Wall" || other.tag == "Mud" || other.tag == "Ice") {
             playerController.isGrounded = true;
             
             switch (other.tag)
             {
-                case "Ground":
+                case "Wall":
                     playerController.friction = groundFriction;
                     playerController.movementSpeed = groundSpeed;
                     break;
