@@ -17,7 +17,6 @@ public class DicePoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player" && respawnManager.GetNextPoint() == index) {
-            Debug.Log("Checkpoint activated");
             // Send position to manager
             respawnManager.SetSpawnPoint(this.gameObject.transform.position);
 

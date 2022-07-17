@@ -109,7 +109,6 @@ public class PlayerController : MonoBehaviour
     }
 
     public void SetMovementMode(int mode) {
-        Debug.Log("Rolled a " + mode + "!");
         switch(mode) {
             case 1: 
                 movementType = MovementType.Jump;

@@ -19,10 +19,6 @@ public class GroundDetection : MonoBehaviour
     public float mudFriction;
     public float mudSpeed;
 
-    private void Start() {
-        Debug.Log(playerController);
-    }
-
     // Update is called once per frame
     private void OnTriggerStay2D(Collider2D other) {
         if (other.tag == "Wall" || other.tag == "MuddyWall" || other.tag == "Ice") {
