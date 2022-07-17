@@ -6,8 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     public enum MovementType {Jump, Sling, JetPack, Flap}
 
+    [Space(10)]
     public MovementType movementType;
+    public Camera mainCamera;
 
+    [Header("Attributes")]
     public float movementSpeed;
     public float flyForce;
     public float jumpForce;
@@ -16,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float slingForce;
     public Vector2 maxSlingDist;
 
+    [Header("Temporary Debug Info")]
     // [HideInInspector]
     public bool isGrounded;
     // [HideInInspector]
@@ -23,7 +27,6 @@ public class PlayerController : MonoBehaviour
 
     private float movement;
     private Rigidbody2D rb;
-    public Camera mainCamera;
     private DrawSlingLine slingLine;
 
     private Vector2 SlingStartPos;

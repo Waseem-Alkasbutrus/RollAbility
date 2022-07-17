@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class GroundDetection : MonoBehaviour
 {
+    [Space(10)]
     public PlayerController playerController;
 
+    [Header("Ground Physics Attributes")]
     public float groundFriction;
-    public float iceFriction;
-    public float mudFriction;
-
     public float groundSpeed;
+
+    [Header("Ice Physics Attributes")]
+    public float iceFriction;
     public float iceSpeed;
+
+    [Header("Mud Physics Attributes")]
+    public float mudFriction;
     public float mudSpeed;
 
     private void Start() {
